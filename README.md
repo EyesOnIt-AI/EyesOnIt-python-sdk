@@ -38,7 +38,6 @@ pip install eyesonit_python_sdk
 from EyesOnIt import EyesOnItSDK
 from data.elements.eoi_prompt import EOIPrompt
 from data.elements.eoi_region import EOIRegion
-from data.elements.eoi_alerting import EOIAlerting
 
 prompt_one = EOIPrompt(text='person', background_prompt=False, threshold=90)
 prompt_two = EOIPrompt(text='trees', background_prompt=True)
