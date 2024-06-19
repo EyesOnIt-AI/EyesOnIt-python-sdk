@@ -1,0 +1,13 @@
+[project]
+name = "EyesOnIt"
+version = "2.0.1"
+description = "Easy computer vision"
+authors = [{ name = "EyesOnIt", email = "info@eyesonit.us" }]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["pydantic", "Pillow", "requests"]
+
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"

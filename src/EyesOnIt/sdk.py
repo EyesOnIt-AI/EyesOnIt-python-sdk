@@ -2,17 +2,17 @@ import base64
 from typing import List
 import requests
 import json
-from data.elements.eoi_prompt import EOIPrompt
-from data.elements.eoi_region import EOIRegion
-from data.elements.eoi_alerting import EOIAlerting
-from data.elements.eoi_efficient_detection import EOIEfficientDetection
-from data.elements.eoi_bounding_box import EOIBoundingBox
-from data.inputs.eoi_add_stream_inputs import EOIAddStreamInputs
-from data.inputs.eoi_process_image_inputs import EOIProcessImageInputs
-from data.inputs.eoi_monitor_stream_inputs import EOIMonitorStreamInputs
-from data.inputs.eoi_stream_url_input import EOIStreamUrlInput
-from eoi_response import EOIResponse
-from eoi_utils import decode_image
+from .elements.eoi_prompt import EOIPrompt
+from .elements.eoi_alerting import EOIAlerting
+from .elements.eoi_bounding_box import EOIBoundingBox
+from .elements.eoi_efficient_detection import EOIEfficientDetection
+from .elements.eoi_region import EOIRegion
+from .eoi_add_stream_inputs import EOIAddStreamInputs
+from .eoi_monitor_stream_inputs import EOIMonitorStreamInputs
+from .eoi_process_image_inputs import EOIProcessImageInputs
+from .eoi_stream_url_input import EOIStreamUrlInput
+from .eoi_response import EOIResponse
+from .eoi_utils import decode_image
 
 
 class EyesOnItSDK:

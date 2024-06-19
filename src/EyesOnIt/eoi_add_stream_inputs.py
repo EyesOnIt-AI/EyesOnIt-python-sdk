@@ -1,11 +1,11 @@
 from typing import List
 from typing import Optional
 from pydantic import BaseModel
-from data.elements.eoi_alerting import EOIAlerting
-from data.elements.eoi_bounding_box import EOIBoundingBox
-from data.elements.eoi_efficient_detection import EOIEfficientDetection
-from data.elements.eoi_prompt import EOIPrompt
-from data.elements.eoi_region import EOIRegion
+from .elements.eoi_alerting import EOIAlerting
+from .elements.eoi_bounding_box import EOIBoundingBox
+from .elements.eoi_efficient_detection import EOIEfficientDetection
+from .elements.eoi_prompt import EOIPrompt
+from .elements.eoi_region import EOIRegion
 
 
 class EOIAddStreamInputs(BaseModel):

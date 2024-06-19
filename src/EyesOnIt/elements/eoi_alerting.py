@@ -1,4 +1,4 @@
-from data.elements.eoi_genetec import EOIGenetec
+from .eoi_genetec import EOIGenetec
 from pydantic import BaseModel
 from typing import Optional
 
