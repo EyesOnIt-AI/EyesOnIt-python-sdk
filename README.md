@@ -28,7 +28,7 @@ https://www.eyesonit.us/userguide
 The python SDK can be installed with PIP
 
 ```
-pip install eyesonit_python_sdk
+pip install EyesOnIt
 ```
 
 
