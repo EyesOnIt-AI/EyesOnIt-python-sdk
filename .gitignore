@@ -48,3 +48,6 @@ Thumbs.db
 *.mov
 *.wmv
 
+src/EyesOnIt.egg-info
+build/
+samples/my_video_frame.jpg

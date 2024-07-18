@@ -2,10 +2,10 @@ import base64
 from typing import List
 import requests
 import json
-from .elements.eoi_prompt import EOIPrompt
+from .elements.eoi_object_description import EOIObjectDescription
 from .elements.eoi_alerting import EOIAlerting
 from .elements.eoi_bounding_box import EOIBoundingBox
-from .elements.eoi_efficient_detection import EOIEfficientDetection
+from .elements.eoi_motion_detection import EOIMotionDetection
 from .elements.eoi_region import EOIRegion
 from .eoi_add_stream_inputs import EOIAddStreamInputs
 from .eoi_monitor_stream_inputs import EOIMonitorStreamInputs
@@ -30,14 +30,14 @@ class EyesOnItSDK:
         self.__get_video_frame_path = "/get_video_frame"
         self.__get_bounding_box_objects_path = "/get_bounding_box_objects"
 
-    def process_image(self, prompts: List[EOIPrompt], regions: List[EOIRegion], image):
+    def process_image(self, object_descriptions: List[EOIObjectDescription], regions: List[EOIRegion], object_size: int, image):
         try:
             endpoint = self.__base_url + self.__process_image_path
             with open(image, "rb") as image_file:
                 image = image_file.read()
             encoded_image = base64.b64encode(image).decode('utf-8')
 
-            process_image_inputs = EOIProcessImageInputs(prompts=prompts, regions=regions, file=encoded_image)
+            process_image_inputs = EOIProcessImageInputs(prompts=object_descriptions, regions=regions, object_size=object_size, file=encoded_image)
             response = requests.post(endpoint, json=process_image_inputs.model_dump())
             response_text = json.loads(response.text)
             success = True if response.status_code == 200 else False
@@ -54,25 +54,27 @@ class EyesOnItSDK:
             return EOIResponse(success=False, message=repr(e))
 
     def add_stream(self,
-                   prompts: List[EOIPrompt],
-                   regions: List[EOIRegion],
-                   alerting: EOIAlerting,
                    stream_url: str,
-                   name: str = None,
-                   frame_rate: int = 5,
-                   efficient_detection: EOIEfficientDetection = EOIEfficientDetection(),
-                   bounding_box: EOIBoundingBox = EOIBoundingBox()):
+                   name: str,
+                   regions: List[EOIRegion],
+                   object_size: int,
+                   object_descriptions: List[EOIObjectDescription],
+                   alerting: EOIAlerting,
+                   motion_detection: EOIMotionDetection = EOIMotionDetection(),
+                   bounding_box: EOIBoundingBox = EOIBoundingBox(),
+                   frame_rate: int = 5):
         try:
             endpoint = self.__base_url + self.__add_stream_path
 
             add_stream_inputs = EOIAddStreamInputs(stream_url=stream_url,
                                                    name=name,
-                                                   frame_rate=frame_rate,
-                                                   prompts=prompts,
                                                    regions=regions,
+                                                   object_size=object_size,
+                                                   prompts=object_descriptions,
                                                    alerting=alerting,
-                                                   efficient_detection=efficient_detection,
-                                                   bounding_box=bounding_box)
+                                                   efficient_detection=motion_detection,
+                                                   bounding_box=bounding_box,
+                                                   frame_rate=frame_rate)
 
             response = requests.post(endpoint, json=add_stream_inputs.model_dump())
             response_text = json.loads(response.text)

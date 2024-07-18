@@ -56,4 +56,4 @@ print(result.message)
 
 ### Questions? ###
 
-email us at info@eyesonit.us
+email us at support@eyesonit.us
